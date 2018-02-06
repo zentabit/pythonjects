@@ -1,6 +1,5 @@
-import math
-import random
-import sys
+import math, random, sys
+from tqdm import tqdm
 
 print("P-Pi: Calculate pi by probability!\nPlease don't input more than: " + str(sys.maxsize))
 
@@ -17,17 +16,17 @@ while True:
     print("Generating randints...")
 
     try:
-        for i in range(0, maxval):
+        for i in tqdm(range(0, maxval)):
             one.append(random.randint(0, maxval))
             two.append(random.randint(0, maxval))
     except MemoryError:
-        print("Ay bror för mycket saker händer just nu!")
+        print ("För mycket saker händer just nu!")
         input("Enter to exit...")
         break
 
     print("Calculating gcds...")
 
-    for val in range(0, len(one)):
+    for val in tqdm(range(0, len(one))):
         gcd = math.gcd(one[val], two[val])
         if gcd == 1:
             sump += 1
